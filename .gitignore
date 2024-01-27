@@ -2,3 +2,4 @@ objs
 libft
 *.o
 *.out
+push_swap
