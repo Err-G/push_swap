@@ -6,7 +6,7 @@
 /*   By: ecarvalh <ecarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 23:37:19 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/01/27 13:47:38 by ecarvalh         ###   ########.fr       */
+/*   Updated: 2024/01/27 20:45:35 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ struct	s_stack
 
 /* Stack Functions */
 t_stack	*stack_new(int capacity);
+void	stack_del(t_stack *stack);
 void	push(t_stack *stack, int value);
 int		pop(t_stack *stack);
 void	stack_print(t_stack *stack, char *name);
@@ -42,6 +43,9 @@ struct	s_ps
 	t_stack	*a;
 	t_stack	*b;
 };
+
+t_ps	*ps_new(int capacity);
+void	ps_del(t_ps *ps);
 
 /* push_swap operations */
 void	ps_sa(t_ps *ps); /* swap a */
@@ -60,6 +64,6 @@ void	ps_rrb(t_ps *ps); /* reverse rotate b */
 void	ps_rrr(t_ps *ps); /* reverse rotate all */
 
 /* Other */
-int		ft_strtoi(char *str);
+int		ft_strtoi(char *str, int *error);
 
 #endif
