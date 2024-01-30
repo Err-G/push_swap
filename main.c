@@ -6,7 +6,7 @@
 /*   By: ecarvalh <ecarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 23:35:54 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/01/28 22:46:46 by ecarvalh         ###   ########.fr       */
+/*   Updated: 2024/01/29 21:32:34 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	sort(t_ps *ps)
 {
 	if (is_sorted(ps))
 		return ;
-
 	ft_printf("KO\n");
 }
 
