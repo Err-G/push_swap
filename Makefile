@@ -6,7 +6,7 @@
 #    By: ecarvalh <ecarvalh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/26 11:33:41 by ecarvalh          #+#    #+#              #
-#    Updated: 2024/01/26 21:46:00 by ecarvalh         ###   ########.fr        #
+#    Updated: 2024/01/30 16:32:50 by ecarvalh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,6 @@ re: fclean all
 
 $(ODIR)/%.o: %.c
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(LDFLAGS) -c $< -o $@ $(LDLIBS)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 .PHONY: all clean fclean re $(LIB)
