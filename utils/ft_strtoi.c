@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_revrot.c                                        :+:      :+:    :+:   */
+/*   ft_strtoi.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ecarvalh <ecarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/26 22:28:14 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/01/26 22:29:41 by ecarvalh         ###   ########.fr       */
+/*   Created: 2024/01/27 12:28:03 by ecarvalh          #+#    #+#             */
+/*   Updated: 2024/02/06 23:14:44 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ps_rra(t_ps *ps);
-void	ps_rrb(t_ps *ps);
-void	ps_rrr(t_ps *ps);
-
-void	ps_rra(t_ps *ps)
+int	ft_strtoi(char *str, int *error)
 {
-	rrot(ps->a);
-}
+	size_t	i;
+	size_t	res;
+	int		sig;
 
-void	ps_rrb(t_ps *ps)
-{
-	rrot(ps->b);
-}
-
-void	ps_rrr(t_ps *ps)
-{
-	rrot(ps->a);
-	rrot(ps->b);
+	i = 0;
+	res = 0;
+	sig = 1;
+	if (str[i] == '-')
+	{
+		sig = -1;
+		i++;
+	}
+	if (!ft_isdigit(str[i]))
+		return (++(*error));
+	while (ft_isdigit(str[i]))
+	{
+		res = (res * 10) + (str[i++] - '0');
+		if (res > INT_MAX)
+			return (++(*error));
+	}
+	return (res * sig);
 }

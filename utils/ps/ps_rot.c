@@ -1,39 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_init.c                                          :+:      :+:    :+:   */
+/*   ps_rot.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ecarvalh <ecarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 20:15:44 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/01/27 20:33:32 by ecarvalh         ###   ########.fr       */
+/*   Created: 2024/01/26 22:24:11 by ecarvalh          #+#    #+#             */
+/*   Updated: 2024/02/06 15:42:12 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_ps	*ps_new(int capacity)
-{
-	t_ps	*res;
+void	ps_ra(t_ps *ps);
+void	ps_rb(t_ps *ps);
+void	ps_rr(t_ps *ps);
 
-	res = (t_ps *)ft_calloc(1, sizeof(t_ps));
-	res->a = stack_new(capacity);
-	res->b = stack_new(capacity);
-	if (!res->a || !res->b)
-	{
-		if (res->a)
-			free(res->a);
-		if (res->b)
-			free(res->b);
-		free(res);
-		return (NULL);
-	}
-	return (res);
+void	ps_ra(t_ps *ps)
+{
+	if (ps->a->top < 1)
+		return ;
+	stack_rot(ps->a);
 }
 
-void	ps_del(t_ps *ps)
+void	ps_rb(t_ps *ps)
 {
-	stack_del(ps->a);
-	stack_del(ps->b);
-	free(ps);
+	if (ps->b->top < 1)
+		return ;
+	stack_rot(ps->b);
+}
+
+void	ps_rr(t_ps *ps)
+{
+	ps_ra(ps);
+	ps_rb(ps);
 }

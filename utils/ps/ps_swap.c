@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_rot.c                                           :+:      :+:    :+:   */
+/*   ps_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ecarvalh <ecarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/26 22:24:11 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/01/26 22:27:26 by ecarvalh         ###   ########.fr       */
+/*   Created: 2024/01/26 22:03:17 by ecarvalh          #+#    #+#             */
+/*   Updated: 2024/02/06 15:42:19 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ps_ra(t_ps *ps);
-void	ps_rb(t_ps *ps);
-void	ps_rr(t_ps *ps);
+void	ps_sa(t_ps *ps);
+void	ps_sb(t_ps *ps);
+void	ps_ss(t_ps *ps);
 
-void	ps_ra(t_ps *ps)
+void	ps_sa(t_ps *ps)
 {
-	rot(ps->a);
+	if (ps->a->top < 1)
+		return ;
+	stack_swap(ps->a);
 }
 
-void	ps_rb(t_ps *ps)
+void	ps_sb(t_ps *ps)
 {
-	rot(ps->b);
+	if (ps->b->top < 1)
+		return ;
+	stack_swap(ps->b);
 }
 
-void	ps_rr(t_ps *ps)
+void	ps_ss(t_ps *ps)
 {
-	rot(ps->a);
-	rot(ps->b);
+	ps_sa(ps);
+	ps_sb(ps);
 }

@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ps_revrot.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ecarvalh <ecarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 23:37:19 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/02/06 23:13:49 by ecarvalh         ###   ########.fr       */
+/*   Created: 2024/01/26 22:28:14 by ecarvalh          #+#    #+#             */
+/*   Updated: 2024/02/06 15:42:04 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
 
-# include "libft.h"
-# include <limits.h>
+void	ps_rra(t_ps *ps);
+void	ps_rrb(t_ps *ps);
+void	ps_rrr(t_ps *ps);
 
-# include "utils/stack/stack.h"
-# include "utils/ps/ps.h"
+void	ps_rra(t_ps *ps)
+{
+	if (ps->a->top < 1)
+		return ;
+	stack_rrot(ps->a);
+}
 
-/* Other */
-int		ft_strtoi(char *str, int *error);
-int		ft_check_dup(t_ps *ps);
+void	ps_rrb(t_ps *ps)
+{
+	if (ps->b->top < 1)
+		return ;
+	stack_rrot(ps->b);
+}
 
-#endif
+void	ps_rrr(t_ps *ps)
+{
+	ps_rra(ps);
+	ps_rrb(ps);
+}

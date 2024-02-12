@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_push.c                                          :+:      :+:    :+:   */
+/*   ft_check_dup.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarvalh <ecarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarvalh <ecarvalh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/26 22:07:01 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/01/27 23:48:45 by ecarvalh         ###   ########.fr       */
+/*   Created: 2024/02/06 15:37:19 by ecarvalh          #+#    #+#             */
+/*   Updated: 2024/02/06 15:38:36 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ps_pa(t_ps *ps);
-void	ps_pb(t_ps *ps);
-
-void	ps_pa(t_ps *ps)
+int	ft_check_dup(t_ps *ps)
 {
-	if (ps->b->top < 0)
-		return ;
-	push(ps->a, pop(ps->b));
-}
+	int	i;
+	int	j;
 
-void	ps_pb(t_ps *ps)
-{
-	if (ps->a->top < 0)
-		return ;
-	push(ps->b, pop(ps->a));
+	i = -1;
+	while (++i <= ps->a->top)
+	{
+		j = -1;
+		while (++j < i)
+			if (ps->a->data[j] == ps->a->data[i])
+				return (1);
+	}
+	return (0);
 }
