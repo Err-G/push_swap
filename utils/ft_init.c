@@ -1,40 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps.c                                               :+:      :+:    :+:   */
+/*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarvalh <ecarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarvalh <ecarvalh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 20:15:44 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/02/13 15:04:02 by ecarvalh         ###   ########.fr       */
+/*   Created: 2024/02/13 15:39:24 by ecarvalh          #+#    #+#             */
+/*   Updated: 2024/02/13 15:55:51 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_ps	*ps_new(int capacity)
+t_ps	*ft_init(int ac, char **av)
 {
 	t_ps	*res;
+	t_stack	*stk;
+	int		err;
 
-	res = (t_ps *)ft_calloc(1, sizeof(t_ps));
-	if (!res)
+	res = ps_new(ft_count_args(ac, av));
+	err = ft_get_args(&stk, ac, av);
+	if (!stk || !res)
 	{
-		free(res);
-		return (NULL);
-	}
-	res->a = stack_new(capacity);
-	res->b = stack_new(capacity);
-	if (!res->a || !res->b)
-	{
+		stack_del(stk);
 		ps_del(res);
 		return (NULL);
 	}
+	err += ft_check_dup(stk);
+	if (err)
+	{
+		stack_del(stk);
+		ps_del(res);
+		ft_printf("Error\n");
+		return (NULL);
+	}
+	while (stk->top >= 0)
+		stack_push(res->a, stack_pop(stk));
+	stack_del(stk);
 	return (res);
-}
-
-void	ps_del(t_ps *ps)
-{
-	stack_del(ps->a);
-	stack_del(ps->b);
-	free(ps);
 }

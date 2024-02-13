@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarvalh <ecarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarvalh <ecarvalh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 23:35:54 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/02/10 15:52:44 by ecarvalh         ###   ########.fr       */
+/*   Created: 2024/02/13 14:15:38 by ecarvalh          #+#    #+#             */
+/*   Updated: 2024/02/13 16:59:44 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,122 +27,69 @@ int	is_sorted(t_ps *ps)
 	return (1);
 }
 
-void	sort(t_ps *ps)
+void	ps_exec(t_ps *ps, char *cmd)
 {
-	int	i;
-
-	if (is_sorted(ps)) {
-		ft_printf("OK\n");
-		return ;
-	}
-	i = ps->a->top + 1;
-	if (i == 3)
-	{
-		if (stack_getn(ps->a, 0) < stack_getn(ps->a, 1))
-	}
-	ft_printf("KO\n");
-}
-
-/*
-1 2 3:   1 < 2 < 3: [correct]
-2 1 3:   2 > 1 < 3: sa
-2 3 1:   2 < 3 > 1: rra
-3 1 2:   3 > 1 < 2: ra
-1 3 2:   1 < 3 > 2: rra sa
-3 2 1:   3 > 2 > 1: ra sa
-
-ra  <-
-rra ->
-sa  ><
-
-if (arr[top] > arr[top - 1])
-{
-	if (arr[top - 1] < arr[top - 2])
-	{
-		
-	}
-}
-*/
-/*
-typedef enum e_op t_ope;
-enum e_op {
-	OP_SA, OP_RA, OP_RRA,
-	OP_SB, OP_RB, OP_RRB,
-	OP_SS, OP_RS, OP_RRR,
-	OP_PA, OP_PB
-};
-op = {
-	ps_sa, ps_ra, ps_rra,
-	ps_sb, ps_rb, ps_rrb,
-	ps_ss, ps_rr, ps_rrr,
-	ps_pa, ps_pb };
-names = {
-	"sa\n", "ra\n", "rra\n",
-	"sb\n", "rb\n", "rrb\n",
-	"ss\n", "rr\n", "rrr\n",
-	"pa\n", "pb\n" };
-*/
-
-int	get_arg(t_ps **ps, char **av)
-{
+	char	**cmds;
+	void	(**ops)(t_ps *);
 	int		i;
-	int		error;
-	char	**res;
 
-	error = 0;
-	res = ft_split(av[1], ' ');
-	if (!res)
-		return (1);
 	i = -1;
-	while (res[++i])
-		;
-	*ps = ps_new(i);
-	i = -1;
-	while (res[++i])
+	cmds = (char *[]){
+		"sa", "ra", "rra", "sb", "rb", "rrb", "ss", "rr", "rrr", "pa", "pb" };
+	ops = (void (*[])(t_ps *)){
+		ps_sa, ps_ra, ps_rra, ps_sb, ps_rb, ps_rrb, ps_ss, ps_rr, ps_rrr,
+		ps_pa, ps_pb };
+	while (++i <= 11)
 	{
-		stack_push((*ps)->a, ft_strtoi(res[i], &error));
-		free(res[i]);
+		if (ft_strncmp(cmds[i], cmd, ft_strlen(cmd)) == 0)
+		{
+			ops[i](ps);
+			return ;
+		}
 	}
-	free(res);
-	return (error);
 }
 
-int	get_args(t_ps **ps, int ac, char **av)
+void	ps_execp(t_ps *ps, char *cmd)
 {
-	int	i;
-	int	error;
+	ps_exec(ps, cmd);
+	ft_printf("%s\n", cmd);
+}
 
-	error = 0;
-	*ps = ps_new(ac - 1);
-	if (!ps)
-		return (1);
-	i = ac;
-	while (--i > 0)
-		stack_push((*ps)->a, ft_strtoi(av[i], &error));
-	return (error);
+void	sort3(t_ps *ps)
+{
+	if (is_sorted(ps))
+		return ;
+	if (stack_getn(ps->a, 0) < stack_getn(ps->a, 1))
+	{
+		ps_execp(ps, "rra");
+		if (!is_sorted(ps))
+			ps_execp(ps, "sa");
+	}
+	else
+	{
+		if (stack_getn(ps->a, 0) < stack_getn(ps->a, 2))
+			ps_execp(ps, "sa");
+		else
+			ps_execp(ps, "ra");
+		if (!is_sorted(ps))
+			ps_execp(ps, "sa");
+	}
 }
 
 int	main(int ac, char **av)
 {
 	t_ps	*ps;
-	int		error;
 
-	error = 0;
 	if (ac < 2)
 		return (0);
-	else if (ac == 2)
-		error += get_arg(&ps, av);
+	ps = ft_init(ac, av);
+	if (!ps)
+		return (0);
+	if (ps->a->top == 2)
+		sort3(ps);
 	else
-		error += get_args(&ps, ac, av);
-	error += ft_check_dup(ps);
-	if (error)
-	{
-		ft_printf("Error\n");
-		ps_del(ps);
-		return (1);
-	}
-	sort(ps);
-	//stack_print(ps->a, "a");
+		ft_printf("KO\n");
+	stack_print(ps->a, "a");
 	ps_del(ps);
 	return (0);
 }

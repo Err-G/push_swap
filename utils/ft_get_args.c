@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_dup.c                                     :+:      :+:    :+:   */
+/*   ft_get_args.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ecarvalh <ecarvalh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/06 15:37:19 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/02/13 15:24:18 by ecarvalh         ###   ########.fr       */
+/*   Created: 2024/02/13 15:39:45 by ecarvalh          #+#    #+#             */
+/*   Updated: 2024/02/13 15:39:56 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_check_dup(t_stack *stk)
+int	ft_get_args(t_stack **stk, int ac, char **av)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		error;
+	char	*tok;
 
-	i = -1;
-	while (++i <= stk->top)
+	i = 0;
+	error = 0;
+	*stk = stack_new(ft_count_args(ac, av));
+	if (!*stk)
+		return (1);
+	while (++i < ac)
 	{
-		j = -1;
-		while (++j < i)
-			if (stk->data[j] == stk->data[i])
-				return (1);
+		tok = ft_strtok(av[i], " \n");
+		while (tok)
+		{
+			stack_push(*stk, ft_strtoi(tok, &error));
+			tok = ft_strtok(NULL, " \n");
+		}
 	}
-	return (0);
+	return (error);
 }
