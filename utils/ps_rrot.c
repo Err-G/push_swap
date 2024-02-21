@@ -1,36 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_args.c                                      :+:      :+:    :+:   */
+/*   ps_rrot.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ecarvalh <ecarvalh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/13 15:39:45 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/02/13 15:39:56 by ecarvalh         ###   ########.fr       */
+/*   Created: 2024/02/20 13:06:30 by ecarvalh          #+#    #+#             */
+/*   Updated: 2024/02/20 13:08:23 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_get_args(t_stack **stk, int ac, char **av)
-{
-	int		i;
-	int		error;
-	char	*tok;
+void	ps_rra(t_ps *ps);
+void	ps_rrb(t_ps *ps);
+void	ps_rrr(t_ps *ps);
 
-	i = 0;
-	error = 0;
-	*stk = stack_new(ft_count_args(ac, av));
-	if (!*stk)
-		return (1);
-	while (++i < ac)
-	{
-		tok = ft_strtok(av[i], " \n");
-		while (tok)
-		{
-			stack_push(*stk, ft_strtoi(tok, &error));
-			tok = ft_strtok(NULL, " \n");
-		}
-	}
-	return (error);
+void	ps_rra(t_ps *ps)
+{
+	if (ps->a->top < 1)
+		return ;
+	stk_rrot(ps->a);
+}
+
+void	ps_rrb(t_ps *ps)
+{
+	if (ps->b->top < 1)
+		return ;
+	stk_rrot(ps->b);
+}
+
+void	ps_rrr(t_ps *ps)
+{
+	ps_rra(ps);
+	ps_rrb(ps);
 }

@@ -1,25 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_count_args.c                                    :+:      :+:    :+:   */
+/*   tests.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ecarvalh <ecarvalh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/13 15:40:32 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/02/13 15:40:33 by ecarvalh         ###   ########.fr       */
+/*   Created: 2024/02/21 12:10:21 by ecarvalh          #+#    #+#             */
+/*   Updated: 2024/02/21 12:11:46 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_count_args(int ac, char **av)
-{
-	int	i;
-	int	wc;
+int		test_lth(int a, int b);
+int		test_gth(int a, int b);
+int		test_min(int a, int b);
+int		test_max(int a, int b);
 
-	i = 0;
-	wc = 0;
-	while (++i < ac)
-		wc += ft_wordcount(av[i], " \n");
-	return (wc);
+int	test_lth(int a, int b)
+{
+	return (a < b);
+}
+
+int	test_gth(int a, int b)
+{
+	return (a > b);
+}
+
+int	test_min(int a, int b)
+{
+	if (a < b)
+		return (a);
+	return (b);
+}
+
+int	test_max(int a, int b)
+{
+	if (a > b)
+		return (a);
+	return (b);
 }

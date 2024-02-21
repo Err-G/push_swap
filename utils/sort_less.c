@@ -1,41 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init.c                                          :+:      :+:    :+:   */
+/*   sort_less.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ecarvalh <ecarvalh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/13 15:39:24 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/02/13 15:55:51 by ecarvalh         ###   ########.fr       */
+/*   Created: 2024/02/21 12:16:59 by ecarvalh          #+#    #+#             */
+/*   Updated: 2024/02/21 15:45:18 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_ps	*ft_init(int ac, char **av)
-{
-	t_ps	*res;
-	t_stack	*stk;
-	int		err;
+void	sort_less(t_ps *ps);
 
-	res = ps_new(ft_count_args(ac, av));
-	err = ft_get_args(&stk, ac, av);
-	if (!stk || !res)
-	{
-		stack_del(stk);
-		ps_del(res);
-		return (NULL);
-	}
-	err += ft_check_dup(stk);
-	if (err)
-	{
-		stack_del(stk);
-		ps_del(res);
-		ft_printf("Error\n");
-		return (NULL);
-	}
-	while (stk->top >= 0)
-		stack_push(res->a, stack_pop(stk));
-	stack_del(stk);
-	return (res);
+void	sort_less(t_ps *ps)
+{
+	if (is_stk_sorted(ps->a, test_lth))
+		return ;
+	if (stk_getpos(ps->a, 0) < stk_getpos(ps->a, 1))
+		ps_execp(ps, "rra");
+	else if (stk_getpos(ps->a, 0) < stk_getpos(ps->a, ps->a->top))
+		ps_execp(ps, "sa");
+	else
+		ps_execp(ps, "ra");
+	if (!is_stk_sorted(ps->a, test_lth))
+		ps_execp(ps, "sa");
 }
