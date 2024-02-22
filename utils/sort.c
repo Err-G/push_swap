@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ecarvalh <ecarvalh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 11:50:15 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/02/22 12:22:12 by ecarvalh         ###   ########.fr       */
+/*   Created: 2024/02/21 16:43:16 by ecarvalh          #+#    #+#             */
+/*   Updated: 2024/02/21 16:45:40 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int ac, char **av)
-{
-	t_ps	*ps;
+void	sort(t_ps *ps);
 
-	if (ac < 2)
-		return (0);
-	ps = ft_init(ac, av);
-	if (!ps)
-		return (0);
-	sort(ps);
-	ps_print(ps);
-	ps_del(ps);
-	return (0);
+void	sort(t_ps *ps)
+{
+	int	len;
+
+	len = ps->a->top + 1;
+	if (len >= 1 && len <= 3)
+		sort_less(ps);
+	else
+		sort_more(ps);
 }

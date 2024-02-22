@@ -6,7 +6,7 @@
 /*   By: ecarvalh <ecarvalh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:06:34 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/02/21 15:44:55 by ecarvalh         ###   ########.fr       */
+/*   Updated: 2024/02/22 17:26:24 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ t_ps	*ft_init(int ac, char **av);
 void	sort_less(t_ps *ps);
 
 /* sort_more.c */
+void	sort_more(t_ps *ps);
 
 /* sort.c */
 void	sort(t_ps *ps);
@@ -96,5 +97,10 @@ int		test_lth(int a, int b);
 int		test_gth(int a, int b);
 int		test_min(int a, int b);
 int		test_max(int a, int b);
+
+/* opt_rot.c */
+void	opt_rot_ab(t_ps *ps, int ra_times, int rb_times);
+int		opt_rot_a(t_ps *ps, int r_times);
+int		opt_rot_b(t_ps *ps, int r_times);
 
 #endif
