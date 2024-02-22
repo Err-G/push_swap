@@ -6,7 +6,7 @@
 /*   By: ecarvalh <ecarvalh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 16:46:17 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/02/22 17:47:24 by ecarvalh         ###   ########.fr       */
+/*   Updated: 2024/02/22 20:02:12 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ int	find_atob(t_ps *ps, int a_pos)
 		if ((stk_getpos(ps->a, a_pos) > stk_getpos(ps->b, i))
 			&& (stk_getpos(ps->a, a_pos) < stk_getpos(ps->b, i - 1)))
 			break ;
-	return (i);
+	return (opt_indx(i, ps->b->top));
 }
 
 /*
-1 4 5 6
-2 3
+4 5 6
+1 2 3
 */
 
 int	find_min_atob(t_ps *ps)
@@ -50,10 +50,9 @@ int	find_min_atob(t_ps *ps)
 	while (++i <= ps->a->top)
 	{
 		cost = find_atob(ps, i);
-		ft_printf("total cost: %d, index: %d\n", cost + i, i);
-		if (i + cost < min)
+		if (opt_indx(i, ps->a->top) + cost < min)
 		{
-			min = i + cost;
+			min = opt_indx(i, ps->a->top) + cost;
 			min_pos = i;
 		}
 	}
@@ -65,10 +64,15 @@ void	sort_more(t_ps *ps)
 	int	ra_times;
 	int	rb_times;
 
-	ra_times = find_min_atob(ps);
-	rb_times = find_atob(ps, ra_times);
 	ps_execp(ps, "pb");
 	ps_execp(ps, "pb");
-//	ft_printf("ra_times: %d, rb_times: %d\n", ra_times, rb_times);
-	opt_rot_ab(ps, ra_times, rb_times);
+	while (ps->a->top + 1 >= 3)
+	{
+		ra_times = opt_indx(find_min_atob(ps), ps->a->top);
+		rb_times = find_atob(ps, find_min_atob(ps));
+		ps_print(ps);
+		ft_printf("ra: %d, rb: %d\n", ra_times, rb_times);
+		opt_rot_ab(ps, ra_times, rb_times);
+		ps_execp(ps, "pb");
+	}
 }

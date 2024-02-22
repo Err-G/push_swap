@@ -6,7 +6,7 @@
 /*   By: ecarvalh <ecarvalh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:23:51 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/02/22 17:48:25 by ecarvalh         ###   ########.fr       */
+/*   Updated: 2024/02/22 19:27:53 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,29 +69,24 @@ int	opt_rot_b(t_ps *ps, int r_times)
 
 void	opt_rot_ab(t_ps *ps, int ra_times, int rb_times)
 {
-	int	opt_ra_times;
-	int	opt_rb_times;
-
-	opt_ra_times = opt_indx(ra_times, ps->a->top);
-	opt_rb_times = opt_indx(rb_times, ps->b->top);
-	while (opt_ra_times || opt_rb_times)
+	while (ra_times || rb_times)
 	{
-		if (opt_ra_times > 0 && opt_rb_times > 0)
+		if (ra_times > 0 && rb_times > 0)
 		{
 			ps_execp(ps, "rr");
-			opt_ra_times--;
-			opt_rb_times--;
+			ra_times--;
+			rb_times--;
 		}
-		else if (opt_ra_times < 0 && opt_rb_times < 0)
+		else if (ra_times < 0 && rb_times < 0)
 		{
 			ps_execp(ps, "rrr");
-			opt_ra_times++;
-			opt_rb_times++;
+			ra_times++;
+			rb_times++;
 		}
 		else
 		{
-			opt_ra_times -= opt_rot_a(ps, opt_ra_times);
-			opt_rb_times -= opt_rot_b(ps, opt_rb_times);
+			ra_times -= opt_rot_a(ps, ra_times);
+			rb_times -= opt_rot_b(ps, rb_times);
 		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ecarvalh <ecarvalh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:06:34 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/02/22 17:26:24 by ecarvalh         ###   ########.fr       */
+/*   Updated: 2024/02/22 18:50:06 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ int		test_min(int a, int b);
 int		test_max(int a, int b);
 
 /* opt_rot.c */
+int		opt_indx(int idx, int max);
 void	opt_rot_ab(t_ps *ps, int ra_times, int rb_times);
 int		opt_rot_a(t_ps *ps, int r_times);
 int		opt_rot_b(t_ps *ps, int r_times);
