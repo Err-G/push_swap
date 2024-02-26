@@ -6,7 +6,7 @@
 /*   By: ecarvalh <ecarvalh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 13:10:30 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/02/24 22:01:04 by ecarvalh         ###   ########.fr       */
+/*   Updated: 2024/02/26 16:13:00 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ int	ft_strtoi(char *str, int *err)
 		sig = -1;
 		i++;
 	}
-	if (!ft_isdigit(str[i]))
+	if (ft_strspn(str, "0123456789") != ft_strlen(str))
 		return (++(*err));
 	while (ft_isdigit(str[i]))
 	{
 		res = (res * 10) + (str[i++] - '0');
-		if (res > INT_MAX)
+		if ((sig > 0 && res > INT_MAX) || res > (ssize_t)INT_MAX + 1)
 			return (++(*err));
 	}
 	return (res * sig);

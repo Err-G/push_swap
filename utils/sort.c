@@ -6,7 +6,7 @@
 /*   By: ecarvalh <ecarvalh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 16:43:16 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/02/26 01:41:01 by ecarvalh         ###   ########.fr       */
+/*   Updated: 2024/02/26 13:24:44 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	sort_less(t_ps *ps)
 
 void	sort_more(t_ps *ps)
 {
+	if (stk_test(ps->a, _lth))
+		return ;
 	if (ps->a->top > 3)
 		ps_execp(ps, "pb");
 	if (ps->a->top > 3)
@@ -48,6 +50,8 @@ void	sort_more(t_ps *ps)
 	sort_less(ps);
 	while (ps->b->top > 0)
 		send_to_a(ps);
+	otmz_rot_ab(ps,
+		calc_rot(ps->a, stk_find(ps->a, _equ, stk_iter(ps->a, _min))), 0);
 }
 
 void	sort(t_ps *ps)

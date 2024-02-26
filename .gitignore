@@ -3,3 +3,4 @@ libft
 *.o
 *.out
 push_swap
+checker

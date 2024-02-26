@@ -6,7 +6,7 @@
 /*   By: ecarvalh <ecarvalh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:50:15 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/02/26 01:57:40 by ecarvalh         ###   ########.fr       */
+/*   Updated: 2024/02/26 12:29:58 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	main(int ac, char **av)
 	if (!ps)
 		return (0);
 	sort(ps);
-	ps_print(ps);
 	ps_del(ps);
 	return (0);
 }

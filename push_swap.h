@@ -6,7 +6,7 @@
 /*   By: ecarvalh <ecarvalh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:06:34 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/02/26 01:41:18 by ecarvalh         ###   ########.fr       */
+/*   Updated: 2024/02/26 12:25:12 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,9 @@ int		_abs(int a);
 
 /* calc.c */
 int		calc_rot(t_stk *stk, int stk_size);
-int		calc_atob(t_ps *ps);
+int		calc_atob(t_ps *ps, int a_val);
+int		calc_btoa(t_ps *ps, int b_val);
+int		calc_min_atob(t_ps *ps);
 
 /* otmz.c */
 void	otmz_rot_ab(t_ps *ps, int ra_times, int rb_times);
