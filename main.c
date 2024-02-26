@@ -6,7 +6,7 @@
 /*   By: ecarvalh <ecarvalh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:50:15 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/02/26 12:29:58 by ecarvalh         ###   ########.fr       */
+/*   Updated: 2024/02/26 16:34:04 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int ac, char **av)
 		return (0);
 	ps = ft_init(ac, av);
 	if (!ps)
-		return (0);
+		return (1);
 	sort(ps);
 	ps_del(ps);
 	return (0);
