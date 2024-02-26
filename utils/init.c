@@ -6,7 +6,7 @@
 /*   By: ecarvalh <ecarvalh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 13:10:30 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/02/21 12:32:05 by ecarvalh         ###   ########.fr       */
+/*   Updated: 2024/02/24 22:01:04 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	ft_check_dup(t_stk *stk)
 	int	j;
 
 	i = -1;
-	while (++i <= stk->top)
+	while (++i < stk->top)
 	{
 		j = -1;
 		while (++j < i)
@@ -115,7 +115,7 @@ t_ps	*ft_init(int ac, char **av)
 		stk_del(stk);
 		return (ps_del(res));
 	}
-	while (stk->top >= 0)
+	while (stk->top > 0)
 		stk_push(res->a, stk_pop(stk));
 	stk_del(stk);
 	return (res);

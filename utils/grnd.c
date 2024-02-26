@@ -1,37 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_rot.c                                           :+:      :+:    :+:   */
+/*   grnd.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ecarvalh <ecarvalh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 13:03:02 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/02/24 22:00:24 by ecarvalh         ###   ########.fr       */
+/*   Created: 2024/02/26 00:37:58 by ecarvalh          #+#    #+#             */
+/*   Updated: 2024/02/26 00:38:23 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ps_ra(t_ps *ps);
-void	ps_rb(t_ps *ps);
-void	ps_rr(t_ps *ps);
+int	_abs(int a);
 
-void	ps_ra(t_ps *ps)
+int	_abs(int a)
 {
-	if (ps->a->top < 2)
-		return ;
-	stk_rot(ps->a);
-}
-
-void	ps_rb(t_ps *ps)
-{
-	if (ps->b->top < 2)
-		return ;
-	stk_rot(ps->b);
-}
-
-void	ps_rr(t_ps *ps)
-{
-	ps_ra(ps);
-	ps_rb(ps);
+	if (a < 0)
+		return (-a);
+	return (a);
 }

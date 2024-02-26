@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_less.c                                        :+:      :+:    :+:   */
+/*   send.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ecarvalh <ecarvalh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 12:16:59 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/02/21 15:45:18 by ecarvalh         ###   ########.fr       */
+/*   Created: 2024/02/23 23:31:21 by ecarvalh          #+#    #+#             */
+/*   Updated: 2024/02/26 01:35:00 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_less(t_ps *ps);
+void	send_to_b(t_ps *ps);
+void	send_to_a(t_ps *ps);
 
-void	sort_less(t_ps *ps)
+void	send_to_b(t_ps *ps)
 {
-	if (is_stk_sorted(ps->a, test_lth))
-		return ;
-	if (stk_getpos(ps->a, 0) < stk_getpos(ps->a, 1))
-		ps_execp(ps, "rra");
-	else if (stk_getpos(ps->a, 0) < stk_getpos(ps->a, ps->a->top))
-		ps_execp(ps, "sa");
-	else
-		ps_execp(ps, "ra");
-	if (!is_stk_sorted(ps->a, test_lth))
-		ps_execp(ps, "sa");
+	int	rb_need;
+
+	rb_need = calc_atob(ps);
+	otmz_rot_ab(ps, 0, rb_need);
+	ps_execp(ps, "pb");
+}
+
+void	send_to_a(t_ps *ps)
+{
+	if (stk_getpos(ps->a, 0) < stk_getpos(ps->b, 0))
+		ps_execp(ps, "pa");
 }

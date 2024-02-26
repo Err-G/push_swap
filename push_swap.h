@@ -6,7 +6,7 @@
 /*   By: ecarvalh <ecarvalh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:06:34 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/02/22 18:50:06 by ecarvalh         ###   ########.fr       */
+/*   Updated: 2024/02/26 01:41:18 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,19 @@ t_stk	*stk_new(int cap);
 void	*stk_del(t_stk *stk);
 void	stk_push(t_stk *stk, int val);
 int		stk_pop(t_stk *stk);
-int		stk_getpos(t_stk *stk, int pos);
+void	stk_print(t_stk *stk);
 
 /* stk_op.c */
-void	stk_print(t_stk *stk);
+int		stk_getpos(t_stk *stk, int pos);
+void	stk_setpos(t_stk *stk, int pos, int val);
 void	stk_swap(t_stk *stk);
 void	stk_rot(t_stk *stk);
 void	stk_rrot(t_stk *stk);
+
+/* stk_hlpr.c */
+int		stk_iter(t_stk *stk, int (*func)(int, int));
+int		stk_test(t_stk *stk, int (*func)(int, int));
+int		stk_find(t_stk *stk, int (*func)(int, int), int val);
 
 /* PS */
 /* ps.c */
@@ -79,29 +85,35 @@ int		ft_get_args(t_stk **stk, int ac, char **av);
 int		ft_check_dup(t_stk *stk);
 t_ps	*ft_init(int ac, char **av);
 
-/* sort_less.c */
-void	sort_less(t_ps *ps);
-
-/* sort_more.c */
-void	sort_more(t_ps *ps);
-
-/* sort.c */
-void	sort(t_ps *ps);
-
-/* stack_test.c */
-int		is_stk_sorted(t_stk *stk, int (*cmp)(int, int));
+/* test.c */
 int		is_ps_sorted(t_ps *ps);
 
-/* tests.c */
-int		test_lth(int a, int b);
-int		test_gth(int a, int b);
-int		test_min(int a, int b);
-int		test_max(int a, int b);
+/* undr.c */
+int		_lth(int a, int b);
+int		_gth(int a, int b);
+int		_min(int a, int b);
+int		_max(int a, int b);
+int		_equ(int a, int b);
 
-/* opt_rot.c */
-int		opt_indx(int idx, int max);
-void	opt_rot_ab(t_ps *ps, int ra_times, int rb_times);
-int		opt_rot_a(t_ps *ps, int r_times);
-int		opt_rot_b(t_ps *ps, int r_times);
+/* grnd.c */
+int		_abs(int a);
+
+/* calc.c */
+int		calc_rot(t_stk *stk, int stk_size);
+int		calc_atob(t_ps *ps);
+
+/* otmz.c */
+void	otmz_rot_ab(t_ps *ps, int ra_times, int rb_times);
+int		otmz_rot_a(t_ps *ps, int r_times);
+int		otmz_rot_b(t_ps *ps, int r_times);
+
+/* send.c */
+void	send_to_b(t_ps *ps);
+void	send_to_a(t_ps *ps);
+
+/* sort.c */
+void	sort_less(t_ps *ps);
+void	sort_more(t_ps *ps);
+void	sort(t_ps *ps);
 
 #endif

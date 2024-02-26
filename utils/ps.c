@@ -6,7 +6,7 @@
 /*   By: ecarvalh <ecarvalh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:39:44 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/02/21 12:32:18 by ecarvalh         ###   ########.fr       */
+/*   Updated: 2024/02/25 17:16:43 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,11 @@ void	*ps_del(t_ps *ps)
 
 void	ps_print(t_ps *ps)
 {
-	ft_printf("a: ");
+	ft_printf("[");
 	stk_print(ps->a);
-	ft_printf("b: ");
+	ft_printf("] [");
 	stk_print(ps->b);
+	ft_printf("]\n");
 }
 
 void	ps_exec(t_ps *ps, char *cmd)

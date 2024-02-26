@@ -1,42 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests.c                                            :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ecarvalh <ecarvalh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 12:10:21 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/02/21 12:11:46 by ecarvalh         ###   ########.fr       */
+/*   Created: 2024/02/20 14:04:17 by ecarvalh          #+#    #+#             */
+/*   Updated: 2024/02/26 01:42:38 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		test_lth(int a, int b);
-int		test_gth(int a, int b);
-int		test_min(int a, int b);
-int		test_max(int a, int b);
+int		is_ps_sorted(t_ps *ps);
 
-int	test_lth(int a, int b)
+int	is_ps_sorted(t_ps *ps)
 {
-	return (a < b);
-}
-
-int	test_gth(int a, int b)
-{
-	return (a > b);
-}
-
-int	test_min(int a, int b)
-{
-	if (a < b)
-		return (a);
-	return (b);
-}
-
-int	test_max(int a, int b)
-{
-	if (a > b)
-		return (a);
-	return (b);
+	if (ps->b->top > 0)
+		return (1);
+	return (stk_test(ps->a, _lth));
 }

@@ -6,7 +6,7 @@
 /*   By: ecarvalh <ecarvalh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:14:16 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/02/21 12:33:16 by ecarvalh         ###   ########.fr       */
+/*   Updated: 2024/02/25 17:20:02 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_stk	*stk_new(int cap);
 void	*stk_del(t_stk *stk);
 void	stk_push(t_stk *stk, int val);
 int		stk_pop(t_stk *stk);
-int		stk_getpos(t_stk *stk, int pos);
+void	stk_print(t_stk *stk);
 
 t_stk	*stk_new(int cap)
 {
@@ -26,7 +26,7 @@ t_stk	*stk_new(int cap)
 	if (!res)
 		return (NULL);
 	res->cap = cap;
-	res->top = -1;
+	res->top = 0;
 	res->dat = (int *)ft_calloc(cap, sizeof(int));
 	if (!res->dat)
 		return (stk_del(res));
@@ -42,30 +42,32 @@ void	*stk_del(t_stk *stk)
 
 void	stk_push(t_stk *stk, int val)
 {
-	if (stk->top == stk->cap - 1)
+	if (stk->top == stk->cap)
 	{
 		ft_printf("Err: Overflow!\n");
 		return ;
 	}
-	stk->dat[++stk->top] = val;
+	stk->dat[stk->top++] = val;
 }
 
 int	stk_pop(t_stk *stk)
 {
-	if (stk->top < 0)
+	if (!stk->top)
 	{
 		ft_printf("Err: Underflow!\n");
 		return (0);
 	}
-	return (stk->dat[stk->top--]);
+	return (stk->dat[--stk->top]);
 }
 
-int	stk_getpos(t_stk *stk, int pos)
+void	stk_print(t_stk *stk)
 {
-	if (pos < 0 || pos > stk->top)
-	{
-		ft_printf("Err: NaN pos!\n");
-		return (0);
-	}
-	return (stk->dat[stk->top - pos]);
+	int	i;
+
+	if (!stk->top)
+		return ;
+	i = -1;
+	while (++i < stk->top - 1)
+		ft_printf("%d ", stk_getpos(stk, i));
+	ft_printf("%d", stk_getpos(stk, i));
 }

@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   opt_rot.c                                          :+:      :+:    :+:   */
+/*   otmz.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ecarvalh <ecarvalh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:23:51 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/02/22 19:27:53 by ecarvalh         ###   ########.fr       */
+/*   Updated: 2024/02/26 01:31:03 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		opt_indx(int idx, int max);
-int		opt_rot_a(t_ps *ps, int r_times);
-int		opt_rot_b(t_ps *ps, int r_times);
-void	opt_rot_ab(t_ps *ps, int ra_times, int rb_times);
+int		otmz_rot_a(t_ps *ps, int r_times);
+int		otmz_rot_b(t_ps *ps, int r_times);
+void	otmz_rot_ab(t_ps *ps, int ra_times, int rb_times);
 
-int	opt_indx(int idx, int max)
-{
-	if (idx <= max / 2)
-		return (idx);
-	else
-		return (idx - max);
-}
-
-int	opt_rot_a(t_ps *ps, int r_times)
+int	otmz_rot_a(t_ps *ps, int r_times)
 {
 	int	times;
 
@@ -46,7 +37,7 @@ int	opt_rot_a(t_ps *ps, int r_times)
 	return (times);
 }
 
-int	opt_rot_b(t_ps *ps, int r_times)
+int	otmz_rot_b(t_ps *ps, int r_times)
 {
 	int	times;
 
@@ -67,7 +58,7 @@ int	opt_rot_b(t_ps *ps, int r_times)
 	return (times);
 }
 
-void	opt_rot_ab(t_ps *ps, int ra_times, int rb_times)
+void	otmz_rot_ab(t_ps *ps, int ra_times, int rb_times)
 {
 	while (ra_times || rb_times)
 	{
@@ -85,8 +76,8 @@ void	opt_rot_ab(t_ps *ps, int ra_times, int rb_times)
 		}
 		else
 		{
-			ra_times -= opt_rot_a(ps, ra_times);
-			rb_times -= opt_rot_b(ps, rb_times);
+			ra_times -= otmz_rot_a(ps, ra_times);
+			rb_times -= otmz_rot_b(ps, rb_times);
 		}
 	}
 }

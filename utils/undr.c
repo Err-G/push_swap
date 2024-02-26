@@ -1,34 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_test.c                                       :+:      :+:    :+:   */
+/*   undr.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ecarvalh <ecarvalh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 14:04:17 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/02/21 12:10:39 by ecarvalh         ###   ########.fr       */
+/*   Created: 2024/02/21 12:10:21 by ecarvalh          #+#    #+#             */
+/*   Updated: 2024/02/26 00:39:05 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		is_stk_sorted(t_stk *stk, int (*cmp)(int, int));
-int		is_ps_sorted(t_ps *ps);
+int	_lth(int a, int b);
+int	_gth(int a, int b);
+int	_equ(int a, int b);
+int	_min(int a, int b);
+int	_max(int a, int b);
 
-int	is_stk_sorted(t_stk *stk, int (*cmp)(int, int))
+int	_lth(int a, int b)
 {
-	int	i;
-
-	i = -1;
-	while (++i < stk->top)
-		if (!cmp(stk_getpos(stk, i), stk_getpos(stk, i + 1)))
-			return (0);
-	return (1);
+	return (a < b);
 }
 
-int	is_ps_sorted(t_ps *ps)
+int	_gth(int a, int b)
 {
-	if (ps->b->top >= 0)
-		return (1);
-	return (is_stk_sorted(ps->a, test_lth));
+	return (a > b);
+}
+
+int	_equ(int a, int b)
+{
+	return (a == b);
+}
+
+int	_min(int a, int b)
+{
+	if (a < b)
+		return (a);
+	return (b);
+}
+
+int	_max(int a, int b)
+{
+	if (a > b)
+		return (a);
+	return (b);
 }
