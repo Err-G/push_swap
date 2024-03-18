@@ -3,4 +3,5 @@ libft
 *.o
 *.out
 push_swap
+push_swap_visualizer
 checker
