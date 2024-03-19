@@ -6,7 +6,7 @@
 #    By: ecarvalh <ecarvalh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/26 11:33:41 by ecarvalh          #+#    #+#              #
-#    Updated: 2024/02/21 17:12:40 by ecarvalh         ###   ########.fr        #
+#    Updated: 2024/03/19 19:14:53 by ecarvalh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ ODIR	= objs
 OBJS	= $(SRCS:%.c=$(ODIR)/%.o)
 B_SRCS	= bonus/main.c $(wildcard utils/*.c) $(wildcard bonus/*.c)
 B_OBJS	= $(B_SRCS:%.c=$(ODIR)/%.o)
-CFLAGS	= -Wall -Wextra -Werror -pedantic -I. -I$(LIB) -g
+CFLAGS	= -no-pie -Wall -Wextra -Werror -pedantic -I. -I$(LIB) -g
 LDFLAGS	= -L$(LIB)
 LDLIBS	= -lft
 NAME	= push_swap

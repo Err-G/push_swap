@@ -6,7 +6,7 @@
 /*   By: ecarvalh <ecarvalh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 13:10:30 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/02/26 16:13:00 by ecarvalh         ###   ########.fr       */
+/*   Updated: 2024/03/19 19:11:17 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_strtoi(char *str, int *err)
 		sig = -1;
 		i++;
 	}
-	if (ft_strspn(str, "0123456789") != ft_strlen(str))
+	if (ft_strspn(&str[i], "0123456789") != ft_strlen(&str[i]))
 		return (++(*err));
 	while (ft_isdigit(str[i]))
 	{
@@ -59,11 +59,13 @@ int	ft_get_args(t_stk **stk, int ac, char **av)
 {
 	int		i;
 	int		err;
+	int		size;
 	char	*tok;
 
 	i = 0;
 	err = 0;
-	*stk = stk_new(ft_count_args(ac, av));
+	size = ft_count_args(ac, av);
+	*stk = stk_new(size);
 	if (!*stk)
 		return (1);
 	while (++i < ac)
