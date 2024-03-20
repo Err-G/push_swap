@@ -113,7 +113,7 @@ t_ps	*ft_init(int ac, char **av)
 	err += ft_check_dup(stk);
 	if (err)
 	{
-		ft_printf("Error\n");
+		write(2, "Error\n", 6);
 		stk_del(stk);
 		return (ps_del(res));
 	}

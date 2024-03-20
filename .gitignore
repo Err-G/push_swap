@@ -1,7 +1,9 @@
 objs
 libft
+git
 *.o
 *.out
 push_swap
 push_swap_visualizer
+Push-Swap-Tester
 checker
