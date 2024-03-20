@@ -6,7 +6,7 @@
 /*   By: ecarvalh <ecarvalh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 13:10:30 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/03/19 19:11:17 by ecarvalh         ###   ########.fr       */
+/*   Updated: 2024/03/20 16:08:02 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,9 @@ t_ps	*ft_init(int ac, char **av)
 		stk_del(stk);
 		return (ps_del(res));
 	}
-	while (stk->top > 0)
-		stk_push(res->a, stk_pop(stk));
+	auto int i = -1;
+	while (++i < stk->top)
+		stk_push(res->a, normalize_pop(stk));
 	stk_del(stk);
 	return (res);
 }

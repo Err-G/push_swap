@@ -88,3 +88,25 @@ int	calc_min_atob(t_ps *ps)
 	}
 	return (calc_rot(ps->a, min_pos));
 }
+
+int	calc_min_btoa(t_ps *ps)
+{
+	int	i;
+	int	cost;
+	int	total_cost;
+	int	min_cost;
+	int	min_pos;
+
+	i = -1;
+	min_pos = 0;
+	min_cost = _abs(calc_btoa(ps, stk_getpos(ps->b, 0)));
+	while (++i < ps->b->top)
+	{
+		cost = _abs(calc_btoa(ps, stk_getpos(ps->b, i)));
+		total_cost = cost + _abs(calc_rot(ps->b, i));
+		min_cost = _min(total_cost, min_cost);
+		if (min_cost == total_cost)
+			min_pos = i;
+	}
+	return (calc_rot(ps->b, min_pos));
+}

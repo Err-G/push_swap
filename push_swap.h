@@ -103,6 +103,7 @@ int		calc_rot(t_stk *stk, int stk_size);
 int		calc_atob(t_ps *ps, int a_val);
 int		calc_btoa(t_ps *ps, int b_val);
 int		calc_min_atob(t_ps *ps);
+int		calc_min_btoa(t_ps *ps);
 
 /* otmz.c */
 void	otmz_rot_ab(t_ps *ps, int ra_times, int rb_times);

@@ -6,7 +6,7 @@
 /*   By: ecarvalh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 17:36:28 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/03/20 12:17:51 by ecarvalh         ###   ########.fr       */
+/*   Updated: 2024/03/20 16:02:29 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,17 @@
 
 int	normalize_pop(t_stk *stk)
 {
-	int	pos;
-	int	res;
+	static int	popped = 0;
+	int			pos;
+	int			res;
+	int			value;
 
 	pos = -1;
 	res = 0;
+	value = stk_getpos(stk, popped);
 	while (++pos < stk->top)
-		if (stk_getpos(stk, pos) < stk_getpos(stk, -1))
+		if (stk_getpos(stk, pos) < value)
 			res++;
+	popped++;
 	return (res);
 }
