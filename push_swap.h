@@ -6,7 +6,7 @@
 /*   By: ecarvalh <ecarvalh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:06:34 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/02/26 12:25:12 by ecarvalh         ###   ########.fr       */
+/*   Updated: 2024/03/20 12:19:14 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,8 @@ void	send_to_a(t_ps *ps);
 void	sort_less(t_ps *ps);
 void	sort_more(t_ps *ps);
 void	sort(t_ps *ps);
+
+/* normalize.c */
+int		normalize_pop(t_stk *stk);
 
 #endif

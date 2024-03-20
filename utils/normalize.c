@@ -6,12 +6,11 @@
 /*   By: ecarvalh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 17:36:28 by ecarvalh          #+#    #+#             */
-/*   Updated: 2024/03/19 17:40:12 by ecarvalh         ###   ########.fr       */
+/*   Updated: 2024/03/20 12:17:51 by ecarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 int	normalize_pop(t_stk *stk)
 {
