@@ -32,7 +32,7 @@ int	ft_strtoi(char *str, int *err)
 		sig = -1;
 		i++;
 	}
-	if (ft_strspn(&str[i], "0123456789") != ft_strlen(&str[i]))
+	if (ft_strspn(&str[i], "0123456789") != ft_strlen(&str[i]) || !str[i])
 		return (++(*err));
 	while (ft_isdigit(str[i]))
 	{
@@ -66,7 +66,7 @@ int	ft_get_args(t_stk **stk, int ac, char **av)
 	err = 0;
 	size = ft_count_args(ac, av);
 	*stk = stk_new(size);
-	if (!*stk)
+	if (!*stk || !size)
 		return (1);
 	while (++i < ac)
 	{

@@ -35,7 +35,8 @@ t_stk	*stk_new(int cap)
 
 void	*stk_del(t_stk *stk)
 {
-	free(stk->dat);
+	if (stk)
+		free(stk->dat);
 	free(stk);
 	return (NULL);
 }

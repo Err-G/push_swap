@@ -36,9 +36,11 @@ int	exec_ps_check(t_ps *ps, char *cmd)
 
 int	main(int ac, char **av)
 {
-	auto t_ps * ps = ft_init(ac, av);
-	auto char *line = ft_getline_fd(0);
+	t_ps * ps = ft_init(ac, av);
+	if (!ps)
+		return (1);
 	auto int err = 0;
+	auto char *line = ft_getline_fd(0);
 	while (line)
 	{
 		if (exec_ps_check(ps, line))
