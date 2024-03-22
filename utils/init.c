@@ -67,7 +67,7 @@ int	ft_get_args(t_stk **stk, int ac, char **av)
 	size = ft_count_args(ac, av);
 	*stk = stk_new(size);
 	if (!*stk || !size)
-		return (1);
+		return (++err);
 	while (++i < ac)
 	{
 		tok = ft_strtok(av[i], " \n");

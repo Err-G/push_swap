@@ -14,7 +14,7 @@ LIB		= libft
 SRCS	= main.c $(wildcard utils/*.c)
 ODIR	= objs
 OBJS	= $(SRCS:%.c=$(ODIR)/%.o)
-B_SRCS	= bonus/main.c $(wildcard utils/*.c) $(wildcard bonus/*.c)
+B_SRCS	= bonus/main_bonus.c $(wildcard utils/*.c) $(wildcard bonus/*.c)
 B_OBJS	= $(B_SRCS:%.c=$(ODIR)/%.o)
 CFLAGS	= -no-pie -Wall -Wextra -Werror -pedantic -I. -I$(LIB) -g
 LDFLAGS	= -L$(LIB)

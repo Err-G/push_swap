@@ -12,11 +12,11 @@
 
 #include "push_swap.h"
 
-int		is_ps_sorted(t_ps *ps);
+int	is_ps_sorted(t_ps *ps);
 
 int	is_ps_sorted(t_ps *ps)
 {
 	if (ps->b->top > 0)
-		return (1);
+		return (0);
 	return (stk_test(ps->a, _lth));
 }
