@@ -80,9 +80,7 @@ t_ps	*ft_init_bonus(char *arg)
 
 int	main(int ac, char **av)
 {
-	if (ac < 2 || ac > 2)
-		return (write(2, "Error\n", 6), 1);
-	auto t_ps * ps = ft_init_bonus(av[1]);
+	auto t_ps * ps = ft_init(ac, av);
 	if (!ps)
 		return (1);
 	auto int err = 0;

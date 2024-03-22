@@ -80,7 +80,6 @@ void	ps_rrr(t_ps *ps);
 /* UTILS */
 /* init.c */
 int		ft_strtoi(char *str, int *err);
-int		ft_count_args(int ac, char **av);
 int		ft_get_args(t_stk **stk, int ac, char **av);
 int		ft_check_dup(t_stk *stk);
 t_ps	*ft_init(int ac, char **av);

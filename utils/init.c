@@ -43,40 +43,20 @@ int	ft_strtoi(char *str, int *err)
 	return (res * sig);
 }
 
-int	ft_count_args(int ac, char **av)
-{
-	int	i;
-	int	wc;
-
-	i = 0;
-	wc = 0;
-	while (++i < ac)
-		wc += ft_wordcount(av[i], " \n");
-	return (wc);
-}
-
 int	ft_get_args(t_stk **stk, int ac, char **av)
 {
 	int		i;
 	int		err;
 	int		size;
-	char	*tok;
 
 	i = 0;
 	err = 0;
-	size = ft_count_args(ac, av);
+	size = ac - 1;
 	*stk = stk_new(size);
 	if (!*stk || !size)
 		return (++err);
 	while (++i < ac)
-	{
-		tok = ft_strtok(av[i], " \n");
-		while (tok)
-		{
-			stk_push(*stk, ft_strtoi(tok, &err));
-			tok = ft_strtok(NULL, " \n");
-		}
-	}
+		stk_push(*stk, ft_strtoi(av[i], &err));
 	return (err);
 }
 
@@ -102,7 +82,7 @@ t_ps	*ft_init(int ac, char **av)
 	t_stk	*stk;
 	int		err;
 
-	res = ps_new(ft_count_args(ac, av));
+	res = ps_new(ac - 1);
 	err = ft_get_args(&stk, ac, av);
 	if (!stk || !res)
 	{
