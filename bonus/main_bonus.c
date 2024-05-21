@@ -13,8 +13,6 @@
 #include "push_swap.h"
 
 int		exec_ps_check(t_ps *ps, char *cmd);
-int		ft_get_arg(t_stk **stk, char *arg);
-t_ps	*ft_init_bonus(char *arg);
 
 int	exec_ps_check(t_ps *ps, char *cmd)
 {
@@ -38,48 +36,10 @@ int	exec_ps_check(t_ps *ps, char *cmd)
 	return (1);
 }
 
-int	ft_get_arg(t_stk **stk, char *arg)
-{
-	int		err;
-	int		size;
-	char	*tok;
-
-	err = 0;
-	size = ft_wordcount(arg, " \n");
-	*stk = stk_new(size);
-	if (!*stk || !size)
-		return (++err);
-	tok = ft_strtok(arg, " \n");
-	while (tok)
-	{
-		stk_push(*stk, ft_strtoi(tok, &err));
-		tok = ft_strtok(NULL, " \n");
-	}
-	return (err);
-}
-
-t_ps	*ft_init_bonus(char *arg)
-{
-	t_ps	*res;
-	t_stk	*stk;
-	int		err;
-	int		i;
-
-	res = ps_new(ft_wordcount(arg, " \n"));
-	err = ft_get_arg(&stk, arg);
-	if (!stk || !res)
-		return (write(2, "Error\n", 6), stk_del(stk), ps_del(res));
-	err += ft_check_dup(stk);
-	if (err)
-		return (write(2, "Error\n", 6), stk_del(stk), ps_del(res));
-	i = -1;
-	while (++i < stk->top)
-		stk_push(res->a, normalize_pop(stk));
-	return (stk_del(stk), res);
-}
-
 int	main(int ac, char **av)
 {
+	if (ac < 2)
+		return (0);
 	auto t_ps * ps = ft_init(ac, av);
 	if (!ps)
 		return (1);
